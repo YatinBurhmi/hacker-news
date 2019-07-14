@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <Fragment>
         <Button variant="contained" color="primary">
-          Hello World
+          HACKER NEWS
         </Button>
       </Fragment>
     );

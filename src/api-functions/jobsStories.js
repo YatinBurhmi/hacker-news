@@ -1,6 +1,6 @@
 import calculateTimeDifferance from './time';
  import getSource from './getSource';
-async function fetchLiveStories(count){
+async function fetchJobStories(count){
 try{
 var response = await fetch('https://hacker-news.firebaseio.com/v0/jobstories.json?print=pretty');
 var allTheStories = await response.json();
@@ -30,4 +30,4 @@ catch(err){
 
 
 // fetchLiveStories(number);
-export default fetchLiveStories
+export default fetchJobStories

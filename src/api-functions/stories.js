@@ -23,7 +23,7 @@ const jsonData = allTheStories.slice(count,count+30).map( (element)=>{
 })
 count = count+30;
 
-return jsonData
+return jsonData;
 // var liveStories = await Promise.all(jsonData);
 // console.log(liveStories);
 }

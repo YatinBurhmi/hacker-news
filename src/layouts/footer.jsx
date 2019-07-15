@@ -17,13 +17,14 @@ class Footer extends Component {
             <Nav.Link href="#">FAQ</Nav.Link>
             <Nav.Link href="#">Support</Nav.Link>
             <Nav.Link href="#"> Api</Nav.Link>
-            <Nav.Link href="#">Sequrity</Nav.Link>
+            <Nav.Link href="#">Security</Nav.Link>
             <Nav.Link href="#">Lists</Nav.Link>
             <Nav.Link href="#">Bookmarklet</Nav.Link>
             <Nav.Link href="#">Legal</Nav.Link>
             <Nav.Link href="#">Apply to YC</Nav.Link>
             <Nav.Link href="#">Contact</Nav.Link>
           </Nav>
+          <br/>
         </div>
       </Fragment>
     );

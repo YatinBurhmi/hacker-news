@@ -1,6 +1,5 @@
-import calculateTimeDifferance from './time';
+ import calculateTimeDifferance from './time';
  import getSource from './getSource';
-var number = 0;
 async function fetchLiveStories(count){
 try{
 var response = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty');
@@ -23,7 +22,7 @@ const jsonData = allTheStories.slice(count,count+30).map( (element)=>{
 })
 count = count+30;
 
-return jsonData;
+return Promise.all(jsonData);
 // var liveStories = await Promise.all(jsonData);
 // console.log(liveStories);
 }

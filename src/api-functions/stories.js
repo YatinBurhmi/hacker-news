@@ -22,8 +22,10 @@ const jsonData = allTheStories.slice(count,count+30).map( (element)=>{
       }) ;
 })
 count = count+30;
-var liveStories = await Promise.all(jsonData);
-console.log(liveStories);
+
+return jsonData;
+// var liveStories = await Promise.all(jsonData);
+// console.log(liveStories);
 }
 catch(err){
    console.log(err); 
@@ -31,5 +33,5 @@ catch(err){
 }
 
 
-fetchLiveStories(number);
+// fetchLiveStories(number);
 export default fetchLiveStories

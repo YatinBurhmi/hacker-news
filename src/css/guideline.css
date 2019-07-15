@@ -1,0 +1,23 @@
+.conatainer {
+    width: 31em;
+    margin: auto;
+  }
+  .content{
+    background-color: #fafaf0;
+  }
+  p{
+  font-family: Verdana;
+  font-size: 8.2pt;
+  font-weight: lighter;
+  margin-bottom: 15px;
+  }
+  
+  b{
+    font-size: 0.7em;
+    color: #333333;
+    font-weight: 500;
+  }
+  
+  hr{
+    border:2px solid #ec6310;
+  }

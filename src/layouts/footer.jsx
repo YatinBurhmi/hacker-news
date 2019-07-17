@@ -7,23 +7,23 @@ class Footer extends Component {
     return (
       <Fragment>
         <div style={{ backgroundColor: "#343a40" }}>
-          <br/>
+          <br />
           <a href="http://www.startupschool.org">
             Registration is open for Startup School 2019. Classes start July
             22nd.
           </a>
           <br />
-          <Nav className="justify-content-center" activeKey="/home">
-            <Nav.Link href="#">Guidelines</Nav.Link>
-            <Nav.Link href="#">FAQ</Nav.Link>
-            <Nav.Link href="#">Support</Nav.Link>
-            <Nav.Link href="#"> Api</Nav.Link>
-            <Nav.Link href="#">Security</Nav.Link>
-            <Nav.Link href="#">Lists</Nav.Link>
-            <Nav.Link href="#">Bookmarklet</Nav.Link>
-            <Nav.Link href="#">Legal</Nav.Link>
-            <Nav.Link href="#">Apply to YC</Nav.Link>
-            <Nav.Link href="#">Contact</Nav.Link>
+          <Nav className="justify-content-center">
+            <Nav.Link href="#">GuideLines</Nav.Link>
+            <Nav.Link href="http://newsfaq.html">FAQ</Nav.Link>
+            <Nav.Link href="mailto:hn@ycombinator.com">Support</Nav.Link>
+            <Nav.Link href="https://github.com/HackerNews/API"> Api</Nav.Link>
+            <Nav.Link>Security</Nav.Link>
+            <Nav.Link>Lists</Nav.Link>
+            <Nav.Link> Bookmarklet</Nav.Link>
+            <Nav.Link href="http://www.ycombinator.com/legal/">Legal</Nav.Link>
+            <Nav.Link href="http://www.ycombinator.com/apply">Apply to YC</Nav.Link>
+            <Nav.Link href="mailto:hn@ycombinator.com">Contact</Nav.Link>
           </Nav>
           <br />
         </div>

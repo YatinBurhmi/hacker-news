@@ -26,12 +26,16 @@ export class home extends Component {
           <Card key={story.id} style={{ width: "inherit", height: "7rem" }}>
             <Card.Body>
               <Card.Title>{story.title}</Card.Title>
-              <Card.Subtitle className="mb-2">
-                <b> by {story.by} </b>
-              </Card.Subtitle>
+              <Card.Subtitle className="mb-2">by {story.by}</Card.Subtitle>
               <Card.Text>
-                <b>{story.score} points</b> <b>{story.time}</b>
-                <Button id={story.id} variant="link">{story.comments} comments</Button>
+                {story.score} points{"  "}
+                {story.time}{" "}
+                <Button id={story.id} variant="Light">
+                  {story.comments} comments
+                </Button>{" "}
+                <a className="twitter-share-button" href={`http://www.twitter.com/share?url=${story.url}`}>
+                  <b style={{color:"black"}}>Tweet</b>
+                </a>
               </Card.Text>
             </Card.Body>
           </Card>

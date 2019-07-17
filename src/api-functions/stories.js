@@ -1,5 +1,5 @@
 import calculateTimeDifferance from "./time";
-//  import getSource from './getSource';
+import getSource from './getSource';
 async function fetchLiveStories(count) {
   try {
     var response = await fetch(
@@ -19,7 +19,7 @@ async function fetchLiveStories(count) {
             score: data.score,
             time: calculateTimeDifferance(data.time),
             url: data.url,
-            source: data.url,
+            source: getSource(data.url),
             title: data.title,
             comments: data.descendants
           };

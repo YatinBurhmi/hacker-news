@@ -27,11 +27,11 @@ class Show extends Component {
                 <Card.Body>
                   <Card.Title>{story.title}</Card.Title>
                   <Card.Subtitle className="mb-2">
-                    <b> by {story.by} </b>
+                    by {story.by}
                   </Card.Subtitle>
                   <Card.Text>
-                    <b>{story.score} points</b> <b>{story.time}</b>
-                    <Button variant="link">{story.comments} comments</Button>
+                    {story.score} points {" "}{story.time}
+                    <Button variant="Dark">{story.comments} comments</Button>
                   </Card.Text>
                 </Card.Body>
               </Card>

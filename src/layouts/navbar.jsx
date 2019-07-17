@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Button, Navbar, Nav } from "react-bootstrap";
+import GoogleLogin from "../component/GoogleLogin";
 
 class NavBar extends Component {
   render() {
@@ -17,7 +18,7 @@ class NavBar extends Component {
             <Nav.Link href="Ask">Ask</Nav.Link>
             <Nav.Link href="Job">Job</Nav.Link>
           </Nav>
-          <Button variant="outline-primary">Login</Button>
+          <GoogleLogin isSignedIn={this.props.isSignedIn} />
         </Navbar>
       </Fragment>
     );

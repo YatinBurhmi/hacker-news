@@ -1,10 +1,10 @@
-
-function getSource(link){
-var indexOfHttp = link.indexOf('/');
-var sourcelink = link.slice(indexOfHttp+2);
-var linkIndex = sourcelink.indexOf('/');
-var source = sourcelink.slice(0,linkIndex);
-return source
+function getSource(link) {
+  if (link !== undefined) {
+    let sourceLink = new URL(link);
+    let source = sourceLink.host;
+    return source;
+  }
+  return undefined;
 }
 
 export default getSource;

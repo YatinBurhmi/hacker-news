@@ -6,7 +6,6 @@ class Guideline extends Component {
     return (
       <Fragment>
         <br />
-        <div className="conatainer">
           <br />
           <div className="content">
             <a href="http://www.ycombinator.com">
@@ -142,7 +141,6 @@ class Guideline extends Component {
             <br />
             <br />
             <br />
-        </div>
       </Fragment>
     );
   }

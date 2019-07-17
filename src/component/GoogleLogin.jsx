@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-
+import {Button} from "react-bootstrap"
 
 firebase.initializeApp({
     apiKey:"AIzaSyDRjzf718MhaELWxYW_2etg7_zWFLA3tT4", 
@@ -22,9 +22,9 @@ class GoogleLogin extends Component {
         return (
         <div>
             {this.props.isSignedIn ?
-            <span>
-                {firebase.auth().currentUser.displayName}
-                <button onClick = {()=> firebase.auth().signOut()}>Log Out</button> 
+            <span style={{color:"white"}}>
+                Hi{" "}{firebase.auth().currentUser.displayName}{" "}
+                <Button variant="secondary" onClick = {()=> firebase.auth().signOut()}>Log Out</Button> 
             </span>  
             :
             <StyledFirebaseAuth

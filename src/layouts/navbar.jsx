@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Button, Navbar, Nav } from "react-bootstrap";
-
+import {Link} from "react-router-dom"
 class NavBar extends Component {
   render() {
     return (
@@ -11,11 +11,12 @@ class NavBar extends Component {
               src="https://news.ycombinator.com/y18.gif"
               alt="img not found"
             />
-            <b>HACKER NEWS</b>
+            <b style={{ color: "white" }}>HACKER NEWS</b>
           </Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="Ask">Ask</Nav.Link>
-            <Nav.Link href="Job">Job</Nav.Link>
+            <Link to="/ask">Ask</Link>
+            <Link to="./job">Job</Link>
+            <Link to="/show">Show</Link>
           </Nav>
           <Button variant="outline-primary">Login</Button>
         </Navbar>

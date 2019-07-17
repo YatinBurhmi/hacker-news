@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import "../css/footer.css";
 
 class Footer extends Component {
@@ -7,6 +7,7 @@ class Footer extends Component {
     return (
       <Fragment>
         <div style={{ backgroundColor: "#343a40" }}>
+          <br/>
           <a href="http://www.startupschool.org">
             Registration is open for Startup School 2019. Classes start July
             22nd.
@@ -24,7 +25,7 @@ class Footer extends Component {
             <Nav.Link href="#">Apply to YC</Nav.Link>
             <Nav.Link href="#">Contact</Nav.Link>
           </Nav>
-          <br/>
+          <br />
         </div>
       </Fragment>
     );

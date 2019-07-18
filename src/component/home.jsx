@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import fetchLiveStories from "../api-functions/stories";
 import { Card, Button } from "react-bootstrap";
-var number = 0;
+
 
 export class home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      liveStories: []
+      liveStories: [],
+      
+      numberOfStories:0   
     };
+    this.updateStories = this.updateStories.bind(this);
   }
 
   async componentDidMount() {
+    var number = this.state.numberOfStories;
     var allThePromisies = fetchLiveStories(number);
     var liveStories = await allThePromisies;
     this.setState({
@@ -19,8 +23,21 @@ export class home extends Component {
     });
   }
 
+  async updateStories(){
+   var number = this.state.numberOfStories;
+   number = number+30;
+   var allThePromisies = fetchLiveStories(number);
+   var liveStories = await allThePromisies;
+   this.setState({
+      liveStories: liveStories,
+      numberOfStories: number
+    });
+  }
+
+ 
+
   render() {
-    return (
+      return (
       <div>
         {Object.values(this.state.liveStories).map(story => (
           <Card key={story.id} style={{ width: "inherit", height: "7rem" }}>
@@ -40,6 +57,7 @@ export class home extends Component {
             </Card.Body>
           </Card>
         ))}
+        <button onClick={this.updateStories}>More</button>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Media, Badge } from "react-bootstrap";
 import fetchJobStories from "../api-functions/jobsStories";
 var number = 0;
 
@@ -22,14 +22,49 @@ class Job extends Component {
     return (
       <div>
         {Object.values(this.state.jobFeeds).map(story => (
-          <Card key={story.id} style={{ width: "inherit", height: "5rem" }}>
-            <Card.Body>
-              <Card.Title>{story.title}</Card.Title>
-              <Card.Text>{story.time}</Card.Text>
-            </Card.Body>
+          <Card key={story.id} style={{ width: "inherit", height: "7rem", padding:20 }}>
+            <Media>
+              <img
+                width={64}
+                height={64}
+                className="mr-3"
+                src={`http://${story.source}/favicon.ico`} 
+                alt=""
+              />
+              <Media.Body>
+                <a href={story.url} target="blank">
+                  <b
+                    style={{
+                      marginLeft: -347,
+                      color: "black",
+                      fontSize: "large"
+                    }}
+                  >
+                    {story.title}
+                  </b>
+                </a>
+                <span>-({story.source})</span>
+                <br />
+                <span>
+                  <b style={{fontSize:"small"}}>{story.time}</b>
+                </span>
+                <span>
+                  <a
+                    href={`http://www.twitter.com/share?url=${story.url}`}
+                    target="blank"
+                  >
+                    <Badge style={{ marginLeft: -330 }} variant="info">
+                      Tweet
+                    </Badge>
+                  </a>
+                </span>
+              </Media.Body>
+            </Media>
           </Card>
         ))}
-        <Button variant="danger" style={{ width: 1110 }}>+ MORE NEWS</Button>
+        <Button variant="danger" style={{ width: 1110 }}>
+          + MORE JOBS
+        </Button>
       </div>
     );
   }

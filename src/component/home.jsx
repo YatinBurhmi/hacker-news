@@ -51,18 +51,18 @@ export class home extends Component {
                 <br />
                 <span>By - {story.by}</span>
                 <br />
-                <span>
-                  {story.score} {story.time}
+                <span style={{fontSize:"small"}}>
+                  <b>{story.score}-Points</b>{" "}<b style={{paddingLeft:10}}>{story.time}</b>
                 </span>
                 <span>
                   <Link
-                    style={{ marginLeft: -300, color: "orange" }}
+                    style={{ marginLeft: -320, color: "orange" }}
                     to={{
                       pathname: "/comments",
                      state: { comment:story.object }
                     }}
                   >
-                    {story.comments}comments
+                    {story.comments}-Comments
                   </Link>
                 </span>
                 <span>

@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import fetchLiveStories from "../api-functions/stories";
 import { Card, Button, Media, Badge } from "react-bootstrap";
+import { Link } from "react-router-dom";
 var number = 0;
 
 export class home extends Component {
@@ -18,11 +19,10 @@ export class home extends Component {
       liveStories: liveStories
     });
   }
-
   render() {
     return (
       <div>
-        {Object.values(this.state.liveStories).map(story => (
+        {this.state.liveStories.map(story => (
           <Card
             key={story.id}
             style={{ width: "inherit", height: "7rem", padding: 20 }}
@@ -52,7 +52,20 @@ export class home extends Component {
                 <span>By - {story.by}</span>
                 <br />
                 <span>
-                  {story.score} {story.time} {story.comments}
+                  {story.score} {story.time}
+                </span>
+                <span>
+                  <Link
+                    style={{ marginLeft: -300, color: "orange" }}
+                    to={{
+                      pathname: "/comments",
+                     state: { comment:story.object }
+                    }}
+                  >
+                    Comments
+                  </Link>
+                </span>
+                <span>
                   <a
                     href={`http://www.twitter.com/share?url=${story.url}`}
                     target="blank"

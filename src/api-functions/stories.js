@@ -21,7 +21,8 @@ async function fetchLiveStories(count) {
             url: data.url,
             source: getSource(data.url),
             title: data.title,
-            comments: data.descendants
+            comments: data.descendants,
+            object: data
           };
         });
     });

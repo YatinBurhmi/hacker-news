@@ -36,6 +36,7 @@ class Show extends Component {
                 </Card.Body>
               </Card>
             ))}
+            <Button variant="danger" style={{ width: 1110 }}>+ MORE NEWS</Button>
           </div>
         );
       }

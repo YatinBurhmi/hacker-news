@@ -7,6 +7,7 @@ import Home from "./component/home";
 import Show from "./component/show";
 import Job from "./component/job";
 import Ask from "./component/ask";
+import Comments from "./component/comments";
 import firebase from 'firebase';
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/show" component={Show} />
           <Route path="/ask" component={Ask} />
           <Route path="/job" component={Job} />
+          <Route path="/comments" component={Comments}/>
           </Switch>
           <Footer />
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import fetchJobStories from "../api-functions/jobsStories";
 var number = 0;
 
@@ -29,6 +29,7 @@ class Job extends Component {
             </Card.Body>
           </Card>
         ))}
+        <Button variant="danger" style={{ width: 1110 }}>+ MORE NEWS</Button>
       </div>
     );
   }

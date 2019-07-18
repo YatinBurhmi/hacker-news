@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import fetchLiveStories from "../api-functions/stories";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Media, Badge } from "react-bootstrap";
+import { Link } from "react-router-dom";
 var number = 0;
 
 export class home extends Component {
@@ -18,28 +19,69 @@ export class home extends Component {
       liveStories: liveStories
     });
   }
-
   render() {
     return (
       <div>
-        {Object.values(this.state.liveStories).map(story => (
-          <Card key={story.id} style={{ width: "inherit", height: "7rem" }}>
-            <Card.Body>
-              <Card.Title>{story.title}</Card.Title>
-              <Card.Subtitle className="mb-2">by {story.by}</Card.Subtitle>
-              <Card.Text>
-                {story.score} points{"  "}
-                {story.time}{" "}
-                <Button id={story.id} variant="Light">
-                  {story.comments} comments
-                </Button>{" "}
-                <a className="twitter-share-button" href={`http://www.twitter.com/share?url=${story.url}`}>
-                  <b style={{color:"black"}}>Tweet</b>
+        {this.state.liveStories.map(story => (
+          <Card
+            key={story.id}
+            style={{ width: "inherit", height: "7rem", padding: 20 }}
+          >
+            <Media>
+              <img
+                width={64}
+                height={64}
+                className="mr-3"
+                src={`http://${story.source}/favicon.ico`}
+                alt=""
+              />
+              <Media.Body>
+                <a href={story.url} target="blank">
+                  <b
+                    style={{
+                      marginLeft: -347,
+                      color: "black",
+                      fontSize: "large"
+                    }}
+                  >
+                    {story.title}
+                  </b>
                 </a>
-              </Card.Text>
-            </Card.Body>
+                <span>-({story.source})</span>
+                <br />
+                <span>By - {story.by}</span>
+                <br />
+                <span>
+                  {story.score} {story.time}
+                </span>
+                <span>
+                  <Link
+                    style={{ marginLeft: -300, color: "orange" }}
+                    to={{
+                      pathname: "/comments",
+                     state: { comment:story.object }
+                    }}
+                  >
+                    Comments
+                  </Link>
+                </span>
+                <span>
+                  <a
+                    href={`http://www.twitter.com/share?url=${story.url}`}
+                    target="blank"
+                  >
+                    <Badge style={{ marginLeft: -330 }} variant="info">
+                      Tweet
+                    </Badge>
+                  </a>
+                </span>
+              </Media.Body>
+            </Media>
           </Card>
         ))}
+        <Button variant="danger" style={{ width: 1110 }}>
+          + MORE NEWS
+        </Button>
       </div>
     );
   }

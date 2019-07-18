@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-// import {Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import GoogleLogin from "../component/GoogleLogin";
 import "../css/navbar.css"
 

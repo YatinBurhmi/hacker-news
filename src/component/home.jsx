@@ -62,7 +62,7 @@ export class home extends Component {
                      state: { comment:story.object }
                     }}
                   >
-                    Comments
+                    {story.comments}comments
                   </Link>
                 </span>
                 <span>

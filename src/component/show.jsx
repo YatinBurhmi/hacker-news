@@ -8,8 +8,10 @@ class Show extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          showStories: []
+          showStories: [],
+          numberOfStories:0
         };
+        this.updateStories = this.updateStories.bind(this);
       }
     
       async componentDidMount() {
@@ -19,12 +21,23 @@ class Show extends Component {
           showStories: showStories
         });
       }
+
+      async updateStories(){
+        var number = this.state.numberOfStories;
+        number = number+30;
+        var allThePromisies = fetchShowStories(number);
+        var showStories = await allThePromisies;
+        this.setState({
+          showStories: showStories,
+           numberOfStories: number
+         });
+       } 
     
       render() {
         return (
           <div>
             {Object.values(this.state.showStories).map(story => (
-              <Card key={story.id} style={{ width: "inherit", height: "7rem",padding:20 }}>
+              <Card key={story.id} style={{ width: "inherit", height: "7rem",padding:20,backgroundColor:"#fdf5e2" }}>
                  <Media>
               <img
                 width={64}
@@ -77,7 +90,7 @@ class Show extends Component {
             </Media>
               </Card>
             ))}
-            <Button variant="danger" style={{ width: 1110 }}>+ MORE</Button>
+            <Button onClick={this.updateStories} variant="danger" style={{ width: 1110 }}>+ MORE</Button>
           </div>
         );
       }

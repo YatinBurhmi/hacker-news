@@ -7,8 +7,10 @@ class Job extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jobFeeds: []
+      jobFeeds: [],
+      numberOfStories: 0
     };
+    this.updateJobs = this.updateJobs.bind(this);
   }
 
   async componentDidMount() {
@@ -18,17 +20,31 @@ class Job extends Component {
       jobFeeds: jobFeeds
     });
   }
+
+  async updateJobs() {
+    var number = this.state.numberOfStories;
+    number = number + 30;
+    var allThePromisies = fetchJobStories(number);
+    var jobFeeds = await allThePromisies;
+    this.setState({
+      jobFeeds: jobFeeds,
+      numberOfStories: number
+    });
+  }
   render() {
     return (
       <div>
         {Object.values(this.state.jobFeeds).map(story => (
-          <Card key={story.id} style={{ width: "inherit", height: "7rem", padding:20 }}>
+          <Card
+            key={story.id}
+            style={{ width: "inherit", height: "7rem", padding: 20, backgroundColor:"#fdf5e2" }}
+          >
             <Media>
               <img
                 width={64}
                 height={64}
                 className="mr-3"
-                src={`http://${story.source}/favicon.ico`} 
+                src={`http://${story.source}/favicon.ico`}
                 alt=""
               />
               <Media.Body>
@@ -45,8 +61,8 @@ class Job extends Component {
                 </a>
                 <span>-({story.source})</span>
                 <br />
-                <span>
-                  <b style={{fontSize:"small"}}>{story.time}</b>
+                <span style={{fontSize:"small"}}>
+                  {story.time}
                 </span>
                 <span>
                   <a
@@ -62,7 +78,7 @@ class Job extends Component {
             </Media>
           </Card>
         ))}
-        <Button variant="danger" style={{ width: 1110 }}>
+        <Button onClick={this.updateJobs} variant="danger" style={{ width: 1110 }}>
           + MORE JOBS
         </Button>
       </div>

@@ -32,7 +32,10 @@ class GoogleLogin extends Component {
             {this.props.isSignedIn ?
             <span style={{color:"white"}}>
                 Hi{" "}{firebase.auth().currentUser.displayName}{" "}
-                <Button variant="secondary" onClick = {()=> firebase.auth().signOut()}>Log Out</Button> 
+                <Button variant="secondary" onClick = {()=>{
+                    firebase.auth().signOut()
+                    window.location="http://localhost:3000/"
+                } } >Log Out</Button> 
             </span>  
             :
             <StyledFirebaseAuth

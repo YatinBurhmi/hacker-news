@@ -8,17 +8,22 @@ import Show from "./component/show";
 import Job from "./component/job";
 import Ask from "./component/ask";
 import Comments from "./component/comments";
+import Bookmark from "./component/bookmark"
 import firebase from 'firebase';
 
 class App extends Component {
-  state = {isSignedIn: false}
+  state = {
+    isSignedIn: false,
+  }
 
+ 
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({isSignedIn: !!user})
     })
   }
 
+ 
   render() {
     return (
       <Fragment>
@@ -26,11 +31,12 @@ class App extends Component {
         <div className="container">
           <NavBar isSignedIn={this.state.isSignedIn}/>
           <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Home}/>
           <Route path="/show" component={Show} />
           <Route path="/ask" component={Ask} />
           <Route path="/job" component={Job} />
           <Route path="/comments" component={Comments}/>
+          <Route path="/bookmark" component={Bookmark}></Route>
           </Switch>
           <Footer />
         </div>

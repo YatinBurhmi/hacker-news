@@ -1,26 +1,30 @@
 import React, { Component } from "react";
 import fetchLiveStories from "../api-functions/stories";
-import { Card, Button, Media, Badge } from "react-bootstrap";
+import { Card, Button, Media, Badge, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import firebase from 'firebase';
 import db from "../database/firebaseApp"
 import BookMark from './bookmark'
+import "../css/loadingIcon.css";
 var number = 0;
 
 export class home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoaded: false,
       liveStories: [],
-      numberOfStories:0
+      numberOfStories: 0
     };
     this.updateStories = this.updateStories.bind(this);
+    // this.seachItem = this.seachItem.bind(this);
   }
 
   async componentDidMount() {
     var allThePromisies = fetchLiveStories(number);
     var liveStories = await allThePromisies;
     this.setState({
+      isLoaded: true,
       liveStories: liveStories
     });
     this.storiesToDatabase(liveStories)
@@ -160,9 +164,9 @@ export class home extends Component {
     } 
   }
 
-  async updateStories(){
+  async updateStories() {
     var number = this.state.numberOfStories;
-    number = number+30;
+    number = number + 30;
     var allThePromisies = fetchLiveStories(number);
     var liveStories = await allThePromisies;
     this.setState({
@@ -170,19 +174,39 @@ export class home extends Component {
        numberOfStories: number
      });
     this.storiesToDatabase(liveStories)
-    } 
-   defaultSrc = event =>{
-        event.target.src="https://gitlab.com/favicon.ico"
-   }
+    }
+
+  defaultSrc = ev => {
+    ev.target.src = "https://gitlab.com/favicon.ico";
+  };
 
   render() {
-    return (
-      <div>
-        {this.state.liveStories.map(story => (
-          <Card
-            key={story.id}
-            style={{ width: "inherit", height: "7rem", padding: 20, backgroundColor:"#fdf5e2" }}
-          >
+    if (!this.state.isLoaded) {
+      return (
+        <div className="loader">
+          <Spinner animation="grow" variant="secondary" />
+          <Spinner animation="grow" variant="success" />
+          <Spinner animation="grow" variant="danger" />
+          <Spinner animation="grow" variant="warning" />
+          <Spinner animation="grow" variant="info" />
+          <Spinner animation="grow" variant="light" />
+          <Spinner animation="grow" variant="dark" />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {this.state.liveStories
+            .filter(e => e.title.toLowerCase())
+            .map(story => (
+              <Card
+                key={story.id}
+                style={{
+                  width: "inherit",
+                  padding: 20,
+                  backgroundColor: "#fdf5e2"
+                }}
+              >                  
             <Media>
               <img
                 width={64}
@@ -231,8 +255,8 @@ export class home extends Component {
                       Tweet
                     </Badge>
                   </a>
-                  <Button onClick={() => this.addBookMark(story)}>BookMark</Button>
-                  <Button onClick={() => this.upvote(story)}>Upvote</Button>
+                  <Button variant="Link" onClick={() => this.addBookMark(story)}>BookMark</Button>
+                  <Button variant ="Link" onClick={() => this.upvote(story)}>Upvote</Button>
                 </span>
               </Media.Body>
             </Media>
@@ -242,7 +266,7 @@ export class home extends Component {
           + MORE NEWS
         </Button>
       </div>
-    );
+    );}
   }
 }
 

@@ -43,7 +43,7 @@ class Comments extends Component {
 
   render() {
     const firstLevelComment = this.state.comments.map(element => (
-      <CreateCard key={element.by} contact={element} function={this.fetchComment} />
+      <CreateCard key={element.id} contact={element} function={this.fetchComment} />
     ));
     return <Fragment>{firstLevelComment}</Fragment>;
   }

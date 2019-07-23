@@ -7,6 +7,7 @@ import firebase from 'firebase'
 import {Form} from 'react-bootstrap'
 import Duration from '../api-functions/time'
 import UserComments from './userComment.js'
+import db from "../database/firebaseApp"
 var localId = 0;
 class Comments extends Component {
   constructor(props) {
@@ -27,11 +28,13 @@ class Comments extends Component {
 
   async componentDidMount() {
     var id = this.state.commentObject.comment.id;
-    var firestore = firebase.firestore();
-    const docRef = firestore.collection('comments');
-    var doc = await docRef.get();
+    const docRef = db.collection('comments');
+    var doc = await docRef.get()
+    doc.forEach(item => {
+      console.log(item.id)
+    })
     var allTheComments = doc.docs[0];
-     var commentsData = allTheComments.data();
+    var commentsData = allTheComments.data();
       if(commentsData.hasOwnProperty(id)){
     var userCommentInDatabase = [...commentsData[id]];
     this.setState({
@@ -42,6 +45,7 @@ class Comments extends Component {
     this.state.commentObject.comment,
         0
       );
+      
       if(firstLevelComments!== undefined){ 
       this.setState({
         comments: firstLevelComments
@@ -81,8 +85,8 @@ class Comments extends Component {
     ev.preventDefault();
     localId++;
     var id = this.state.commentObject.comment.id;
-    var firestore = firebase.firestore();
-    const docRef = firestore.collection('comments')
+    
+    const docRef = db.collection('comments')
     var doc = await docRef.get();
     var allTheComments = doc.docs[0];
     var commentsData = allTheComments.data();
@@ -145,8 +149,8 @@ class Comments extends Component {
       this.setState({
         userComment:[...firstStates],
       })
-      var firestore = firebase.firestore();
-      const docRef = firestore.collection('comments');
+      
+      const docRef = db.collection('comments');
       var firestoreId = this.state.commentObject.comment.id; 
       docRef.doc('allComments').set({
       [firestoreId]:firstStates 

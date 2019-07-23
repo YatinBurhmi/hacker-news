@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import fetchBookMarks from '../api-functions/fetchBookMarks'
-import {Spinner} from "react-bootstrap"
+import {Spinner, Button} from "react-bootstrap"
 import firebase from 'firebase';
 import db from "../database/firebaseApp"
 import "../css/loadingIcon.css";
@@ -24,11 +24,35 @@ componentDidMount(){
             bookmark: bookmark
         });
         }
-        // else{
-        //     alert("Please Log In")
-        // }
     })
     }
+
+    
+    removebookmark = (story)=>{
+        console.log("Removing Item")
+        if(firebase.auth().currentUser){
+          let users = db.collection('users').doc(firebase.auth().currentUser.uid);
+          users.get()
+            .then((docsnapshot) => {
+              if(docsnapshot.exists){  //if user exists then only update the upvotes array
+                users.update({
+                  "bookmark_id": firebase.firestore.FieldValue.arrayRemove(story.id)
+                })
+                this.componentDidMount()
+              }
+              else{ //set an empty updateArtilce array and update it afterwards
+                users.set({
+                  bookmark_id: []
+                })
+              }
+            })
+        }
+        else{
+          alert("Please Log in...")
+        } 
+      }
+    
+
     render() {
         if(!this.state.isLoaded){
             return (
@@ -44,9 +68,14 @@ componentDidMount(){
         }else{
         return (
             <div>
-                <h1>Bookmarks</h1>
+                <h1>Bookmarks of {firebase.auth().currentUser.displayName}</h1>
+                <h6>{firebase.auth().currentUser.email}</h6>
                 {this.state.bookmark.map(item=>{
-                   return <h5>{item.title}</h5>  
+                   return (
+                   <div>
+                   <h5>{item.title} <Button onClick={() => this.removebookmark(item)}>delete</Button></h5>
+                   </div>
+                   ) 
                 })}
             </div>
         )

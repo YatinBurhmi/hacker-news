@@ -129,7 +129,7 @@ export class home extends Component {
           }
           else{ //set an empty updateArtilce array and update it afterwards
             users.set({
-              upvotedArticles:[]
+              upvotedArticles: []
             })
           }
         })

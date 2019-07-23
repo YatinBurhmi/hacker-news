@@ -16,7 +16,7 @@ function fetchAllComments(object, level) {
           object: data,
           by: data.by,
           text: data.text,
-          time: Duration(data.time),
+          time: data.time,
           level: level,
           id: data.id
         };

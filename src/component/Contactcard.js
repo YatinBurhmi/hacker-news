@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Button } from "react-bootstrap";
-
+import Duration from '../api-functions/time'
 function CreateCard(props) {
   var level = props.contact.level;
   var indent = level * 50;
@@ -13,7 +13,7 @@ function CreateCard(props) {
         style={{ position: "relative", left: indentForCard, width: 1000 }}
       >
         <div className="media-body p-2 shadow-sm rounded bg-light border">
-          <small className="float-right text-muted">{props.contact.time}</small>
+          <small className="float-right text-muted">{Duration(props.contact.time)}</small>
           <h6 className="mt-0 mb-1">
             <img
               className="mr-3 bg-light rounded"

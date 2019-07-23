@@ -7,6 +7,7 @@ import db from "../database/firebaseApp"
 import BookMark from './bookmark'
 import "../css/loadingIcon.css";
 var number = 0;
+var score = 10
 
 export class home extends Component {
   constructor(props) {
@@ -17,7 +18,10 @@ export class home extends Component {
       numberOfStories: 0
     };
     this.updateStories = this.updateStories.bind(this);
+    this.storiesToDatabase = this.storiesToDatabase.bind(this);
     // this.seachItem = this.seachItem.bind(this);
+    this.initializeUpvotedArticles = this.initializeUpvotedArticles.bind(this);
+    this.countNumberOfPoints = this.countNumberOfPoints.bind(this);
   }
 
   async componentDidMount() {
@@ -30,7 +34,7 @@ export class home extends Component {
     this.storiesToDatabase(liveStories)
   }
 
-  async storiesToDatabase(liveStories){
+   storiesToDatabase(liveStories){
     liveStories.map(story => {
       db.collection('stories').doc(story.id.toString()).set({
         id:story.id,
@@ -58,6 +62,7 @@ export class home extends Component {
         this.addUpvotedArticles(story)
         this.incrementUpvote(story.id.toString(), data.score)
       }
+      this.countNumberOfPoints(story)
     }
   }
 
@@ -94,7 +99,6 @@ export class home extends Component {
     }
   }
   addUpvotedArticles = (story)=>{
-    console.log("Adding Item")
     if(firebase.auth().currentUser){
       let users = db.collection('users').doc(firebase.auth().currentUser.uid);
       users.get()
@@ -117,7 +121,6 @@ export class home extends Component {
   }
 
   removeUpvotedArticles = (story)=>{
-    console.log("Removing Item")
     if(firebase.auth().currentUser){
       let users = db.collection('users').doc(firebase.auth().currentUser.uid);
       users.get()
@@ -140,9 +143,28 @@ export class home extends Component {
   }
 
 
+//count number of comments
+
+async countNumberOfPoints(story){
+  if(firebase.auth().currentUser){
+  let id = story.id
+  let stories = await db.collection('stories').doc(id.toString()).get()
+  let abc = this.state.liveStories.map(item =>{
+    if(item.id === id){
+      item.score = stories.data().score
+      return item
+    }else{
+      return item
+    }
+  })
+  this.setState({
+    liveStories: abc 
+  })
+  return(stories.data().score)
+}}
+
 
   addBookMark = (story)=>{
-    console.log("Bookmark Pressed")
     if(firebase.auth().currentUser){
       let users = db.collection('users').doc(firebase.auth().currentUser.uid);
       users.get()
@@ -233,7 +255,7 @@ export class home extends Component {
                 <span>By - {story.by}</span>
                 <br />
                 <span style={{fontSize:"small"}}>
-                  <b>{story.score}-Points</b>{" "}<b style={{paddingLeft:10}}>{story.time}</b>
+                  <b>{ story.score}-Points</b>{" "}<b style={{paddingLeft:10}}>{story.time}</b>
                 </span>
                 <span>
                   <Link

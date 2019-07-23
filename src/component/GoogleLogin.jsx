@@ -3,10 +3,10 @@ import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import {Button} from "react-bootstrap"
 
-firebase.initializeApp({
-    apiKey:"AIzaSyDRjzf718MhaELWxYW_2etg7_zWFLA3tT4", 
-    authDomain: "hackernews-website.firebaseapp.com" 
-  })
+// firebase.initializeApp({
+//     apiKey:"AIzaSyDRjzf718MhaELWxYW_2etg7_zWFLA3tT4", 
+//     authDomain: "hackernews-website.firebaseapp.com" 
+//   })
 
 class GoogleLogin extends Component {
     

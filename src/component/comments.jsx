@@ -11,6 +11,7 @@ var localId = 0;
 class Comments extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       commentObject: props.location.state,
       comments: [],
@@ -27,11 +28,11 @@ class Comments extends Component {
   async componentDidMount() {
     var id = this.state.commentObject.comment.id;
     var firestore = firebase.firestore();
-    const docRef = firestore.collection('comments')
+    const docRef = firestore.collection('comments');
     var doc = await docRef.get();
     var allTheComments = doc.docs[0];
-    var commentsData = allTheComments.data();
-    if(commentsData.hasOwnProperty(id)){
+     var commentsData = allTheComments.data();
+      if(commentsData.hasOwnProperty(id)){
     var userCommentInDatabase = [...commentsData[id]];
     this.setState({
         userComment:userCommentInDatabase
@@ -41,8 +42,7 @@ class Comments extends Component {
     this.state.commentObject.comment,
         0
       );
-
-     if(firstLevelComments!== undefined){ 
+      if(firstLevelComments!== undefined){ 
       this.setState({
         comments: firstLevelComments
       });
@@ -156,6 +156,7 @@ class Comments extends Component {
 
 
   render() {
+    
     const userComments = this.state.userComment.map(element => (
       <UserComments contact={element} function={this.addChildComment} />
     ))

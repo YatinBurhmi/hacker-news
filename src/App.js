@@ -9,6 +9,7 @@ import Job from "./component/job";
 import Ask from "./component/ask";
 import Comments from "./component/comments";
 import firebase from 'firebase';
+import firebaseConfig from './firebaseConfig'
 
 class App extends Component {
   state = {

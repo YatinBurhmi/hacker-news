@@ -34,7 +34,7 @@ class GoogleLogin extends Component {
                 Hi{" "}{firebase.auth().currentUser.displayName}{" "}
                 <Button variant="secondary" onClick = {()=>{
                     firebase.auth().signOut()
-                    window.location="https://hackernewstestyb.herokuapp.com//"
+                    window.location="https://hackernewstestyb.herokuapp.com"
                 } } >Log Out</Button> 
             </span>  
             :

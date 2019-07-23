@@ -27,8 +27,8 @@ async function fetchLiveStories(count) {
         });
     });
     count = count + 30;
-
     return Promise.all(jsonData);
+
     // var liveStories = await Promise.all(jsonData);
     // console.log(liveStories);
   } catch (err) {

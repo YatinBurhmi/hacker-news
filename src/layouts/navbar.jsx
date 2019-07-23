@@ -37,6 +37,11 @@ class NavBar extends Component {
                 Job
               </Link>
             </Nav.Link>
+            <Nav.Link>
+              <Link style={{ margin: "0", padding: "0" }} to="/bookmark">
+                Bookmark
+              </Link>
+            </Nav.Link>
           </Nav>
           <Form inline>
             {/* <FormControl onChange={this.props.search} type="text" placeholder="Search" className="mr-sm-2" /> */}

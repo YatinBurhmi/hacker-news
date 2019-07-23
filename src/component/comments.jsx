@@ -51,9 +51,6 @@ class Comments extends Component {
         comments: firstLevelComments
       });
      }
-      
-    
-     
    }
 
   async fetchComment(obj, level) {

@@ -2,9 +2,7 @@ import React,{Component} from 'react';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import {Button} from "react-bootstrap"
-
 import db from "../database/firebaseApp"
-
 
 class GoogleLogin extends Component {
     
@@ -36,7 +34,7 @@ class GoogleLogin extends Component {
                 Hi{" "}{firebase.auth().currentUser.displayName}{" "}
                 <Button variant="secondary" onClick = {()=>{
                     firebase.auth().signOut()
-                    window.location="http://localhost:3000/"
+                    window.location="https://hackernewstestyb.herokuapp.com"
                 } } >Log Out</Button> 
             </span>  
             :

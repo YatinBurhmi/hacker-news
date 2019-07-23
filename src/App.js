@@ -8,6 +8,7 @@ import Show from "./component/show";
 import Job from "./component/job";
 import Ask from "./component/ask";
 import Comments from "./component/comments";
+import Bookmark from "./component/bookmark"
 import firebase from 'firebase';
 import firebaseConfig from './firebaseConfig'
 
@@ -36,6 +37,7 @@ class App extends Component {
           <Route path="/ask" component={Ask} />
           <Route path="/job" component={Job} />
           <Route path="/comments" component={Comments}/>
+          <Route path="/bookmark" component={Bookmark}></Route>
           </Switch>
           <Footer />
         </div>

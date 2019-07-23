@@ -2,7 +2,9 @@ import React,{Component} from 'react';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import {Button} from "react-bootstrap"
+
 import db from "../database/firebaseApp"
+
 
 class GoogleLogin extends Component {
     

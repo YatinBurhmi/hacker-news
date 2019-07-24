@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, Media, Badge, Spinner } from "react-bootstrap";
+import { Button, Card, Media,Spinner } from "react-bootstrap";
 import fetchJobStories from "../api-functions/jobsStories";
 import "../css/loadingIcon.css";
 var number = 0;
@@ -85,19 +85,16 @@ class Job extends Component {
                       {story.title}
                     </b>
                   </a>
+                  <a
+                    href={`http://www.twitter.com/share?url=${story.url}`}
+                    target="blank"
+                    style={{margin:"0", padding:"0", float:"right"}}
+                  >
+                    <i className="fa fa-twitter" style={{ marginLeft:15,fontSize:30,color:"#54acee"}}></i>
+                  </a>
                   <span>-({story.source})</span>
                   <br />
                   <span style={{ fontSize: "small" }}>{story.time}</span>
-                  <span>
-                    <a
-                      href={`http://www.twitter.com/share?url=${story.url}`}
-                      target="blank"
-                    >
-                      <Badge style={{ marginLeft: -330 }} variant="info">
-                        Tweet
-                      </Badge>
-                    </a>
-                  </span>
                 </Media.Body>
               </Media>
             </Card>

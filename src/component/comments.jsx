@@ -4,10 +4,12 @@ import fetchComments from "../api-functions/fetchLevelComments.js";
 import getId from "../api-functions/getId.js";
 import CreateCard from "./Contactcard";
 import firebase from 'firebase'
-import {Form} from 'react-bootstrap'
-import Duration from '../api-functions/time'
+import {Form, Button} from 'react-bootstrap'
+// import Duration from '../api-functions/time'
 import UserComments from './userComment.js'
 import db from "../database/firebaseApp"
+
+import "../css/loadingIcon.css"
 var localId = 0;
 class Comments extends Component {
   constructor(props) {
@@ -19,6 +21,7 @@ class Comments extends Component {
       commentText:'',
       userComment:[],
       isPopUp:false,
+      isLoaded: false
     };
     this.fetchComment = this.fetchComment.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -38,6 +41,7 @@ class Comments extends Component {
       if(commentsData.hasOwnProperty(id)){
     var userCommentInDatabase = [...commentsData[id]];
     this.setState({
+      isLoaded:true,
         userComment:userCommentInDatabase
     })
    }
@@ -164,17 +168,20 @@ class Comments extends Component {
     const firstLevelComment = this.state.comments.map(element => (
       <CreateCard key={element.id} contact={element} function={this.fetchComment} />
     ));
-    return <Fragment>
+    
+      return(
+         <Fragment>
     <Form>
     <Form.Group controlId="exampleForm.ControlTextarea1">
-    <Form.Label>add comment</Form.Label>
+    <Form.Label><h4>{this.state.commentObject.comment.title}</h4></Form.Label>
     <Form.Control value={this.state.commentText} as="textarea" rows="3"onChange={this.handleChange} />
+     <Button variant="info" onClick={this.addComment}>add</Button>
     </Form.Group>
-    <button onClick={this.addComment}>add</button>
   </Form>
     {userComments}
     {firstLevelComment}
-   </Fragment>;
+   </Fragment>
+      )
     
   }
 }

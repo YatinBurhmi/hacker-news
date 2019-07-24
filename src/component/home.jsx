@@ -1,13 +1,14 @@
+/* eslint-disable array-callback-return */
 import React, { Component } from "react";
 import fetchLiveStories from "../api-functions/stories";
-import { Card, Button, Media, Badge, Spinner } from "react-bootstrap";
+import { Card, Button, Media,Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import firebase from 'firebase';
 import db from "../database/firebaseApp"
-import BookMark from './bookmark'
+// import BookMark from './bookmark'
 import "../css/loadingIcon.css";
 var number = 0;
-var score = 10
+// var score = 10
 
 export class home extends Component {
   constructor(props) {
@@ -15,7 +16,9 @@ export class home extends Component {
     this.state = {
       isLoaded: false,
       liveStories: [],
-      numberOfStories: 0
+      numberOfStories: 0,
+      bgColor: 'blue',
+      
     };
     this.updateStories = this.updateStories.bind(this);
     this.storiesToDatabase = this.storiesToDatabase.bind(this);
@@ -23,6 +26,13 @@ export class home extends Component {
     this.initializeUpvotedArticles = this.initializeUpvotedArticles.bind(this);
     this.countNumberOfPoints = this.countNumberOfPoints.bind(this);
   }
+
+  // handleClick = () => {
+  //   this.setState({
+  //     bgColor: 'red'
+  //   });
+  // };
+   
 
   async componentDidMount() {
     var allThePromisies = fetchLiveStories(number);
@@ -199,7 +209,7 @@ async countNumberOfPoints(story){
     }
 
   defaultSrc = ev => {
-    ev.target.src = "https://gitlab.com/favicon.ico";
+    ev.target.src = "https://www.nytimes.com/favicon.ico";
   };
 
   render() {
@@ -251,35 +261,31 @@ async countNumberOfPoints(story){
                   </b>
                 </a>
                 <span>-({story.source})</span>
-                <br />
-                <span>By - {story.by}</span>
-                <br />
-                <span style={{fontSize:"small"}}>
-                  <b>{ story.score}-Points</b>{" "}<b style={{paddingLeft:10}}>{story.time}</b>
-                </span>
-                <span>
-                  <Link
-                    style={{ marginLeft: -320, color: "orange" }}
+                <Button variant="Link" style={{float:"right", color:"black"}} onClick={() => this.addBookMark(story)}>
+                <i className="fa fa-bookmark-o"  style={{float:"right", fontSize:24, color:'blue'}}></i></Button>
+                <br/>
+                <span><b>By - {story.by}</b></span>{" "}<span>({story.time})</span>
+                <div>
+      <span><Button variant ="Link" onClick={() => this.upvote(story)}>
+                <i className="fa fa-thumbs-o-up" style={{fontSize:24, color:"blue" }}></i>
+                </Button><b>{ story.score}</b></span>
+      <span> <Link
+                    style={{ margin:"0", padding:"0"}}
                     to={{
                       pathname: "/comments",
                      state: { comment:story.object }
                     }}
                   >
-                    {story.comments}-Comments
-                  </Link>
-                </span>
-                <span>
-                  <a
+                    <i className="fa fa-comments-o" style={{fontSize:24, color:"black",paddingLeft:20}}></i><b style={{color:"black"}}>-{story.comments}</b>
+                  </Link></span>
+      <span> <a
                     href={`http://www.twitter.com/share?url=${story.url}`}
                     target="blank"
+                    style={{margin:"0", padding:"0"}}
                   >
-                    <Badge style={{ marginLeft: -330 }} variant="info">
-                      Tweet
-                    </Badge>
-                  </a>
-                  <Button variant="Link" onClick={() => this.addBookMark(story)}>BookMark</Button>
-                  <Button variant ="Link" onClick={() => this.upvote(story)}>Upvote</Button>
-                </span>
+                    <i className="fa fa-twitter" style={{ marginLeft:20,fontSize:24,color:"#54acee"}}></i>
+                  </a></span>
+                               </div>
               </Media.Body>
             </Media>
           </Card>

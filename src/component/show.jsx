@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, Badge, Media, Spinner } from "react-bootstrap";
+import { Button, Card, Media, Spinner } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import fetchShowStories from "../api-functions/showstories";
 import "../css/loadingIcon.css";
@@ -37,7 +37,7 @@ class Show extends Component {
   }
 
   defaultSrc = ev => {
-    ev.target.src = "https://gitlab.com/favicon.ico";
+    ev.target.src = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTca_jajaXLICZa8dT0aOk46AsAoclLuBca_kjv6AKvOVFPIuDtpQ`
   };
 
   render() {
@@ -86,6 +86,13 @@ class Show extends Component {
                       {story.title}
                     </b>
                   </a>
+                  <a
+                    href={`http://www.twitter.com/share?url=${story.url}`}
+                    target="blank"
+                    style={{margin:"0", padding:"0", float:"right"}}
+                  >
+                    <i className="fa fa-twitter" style={{ marginLeft:15,fontSize:30,color:"#54acee"}}></i>
+                  </a>
                   <span>-({story.source})</span>
                   <br />
                   <span>By - {story.by}</span>
@@ -93,27 +100,6 @@ class Show extends Component {
                   <span style={{ fontSize: "small" }}>
                     <b>{story.score}-Points</b>{" "}
                     <b style={{ paddingLeft: 10 }}>{story.time}</b>
-                  </span>
-                  {/* <span>
-                    <Link
-                      style={{ marginLeft: -320, color: "orange" }}
-                      to={{
-                        pathname: "/comments",
-                        state: { comment: story.object }
-                      }}
-                    >
-                      {story.comments}-Comments
-                    </Link>
-                  </span> */}
-                  <span>
-                    <a
-                      href={`http://www.twitter.com/share?url=${story.url}`}
-                      target="blank"
-                    >
-                      <Badge style={{ marginLeft: -330 }} variant="info">
-                        Tweet
-                      </Badge>
-                    </a>
                   </span>
                 </Media.Body>
               </Media>

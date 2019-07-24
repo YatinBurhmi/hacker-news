@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import db from "../database/firebaseApp"
 import calculateTimeDifferance from "./time";
 import getSource from './getSource';
@@ -11,7 +11,6 @@ async function fetchBookMarks(id){
             userData = getDoc.docs.filter(item => item.data().UID === id)
             let arr = []
             arr = userData[0].data().bookmark_id
-            console.log(arr)
             const bookmarks = arr.map(item =>{
                 return (fetch(`https://hacker-news.firebaseio.com/v0/item/${item}.json?print=pretty`)
                 .then(response => response.json())

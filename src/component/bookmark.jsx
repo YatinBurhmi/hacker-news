@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import fetchBookMarks from '../api-functions/fetchBookMarks'
-import {Spinner, Button} from "react-bootstrap"
+import {Spinner,Button, Card, CardGroup } from "react-bootstrap"
 import firebase from 'firebase';
 import db from "../database/firebaseApp"
 import "../css/loadingIcon.css";
@@ -68,14 +68,51 @@ componentDidMount(){
         }else{
         return (
             <div>
-                <h1>Bookmarks of {firebase.auth().currentUser.displayName}</h1>
-                <h6>{firebase.auth().currentUser.email}</h6>
-                {this.state.bookmark.map(item=>{
+                {this.state.bookmark.map(story=>{
                    return (
+                    
                    <div>
-                   <h5>{item.title} <Button onClick={() => this.removebookmark(item)}>delete</Button></h5>
-                   </div>
-                   ) 
+                
+                <CardGroup>
+  <Card style={{backgroundColor:"#fdf5e2"}} text="black" >
+    <Card.Body>
+      <Card.Text>
+       <a href={story.url} target="blank">
+                    <b
+                      style={{
+                        marginLeft: -347,
+                        color: "black",
+                        fontSize: "large"
+                      }}
+                    >
+                      {story.title}
+                    </b>
+                  </a>
+                  <span>-({story.source})</span>
+                  <br />
+                  <span>By - {story.by}</span>
+                  <br />
+                  <span style={{ fontSize: "small" }}>
+                    <b>{story.score}-Points</b>{" "}
+                    <b style={{ paddingLeft: 10 }}>{story.time}</b>
+                  </span>
+                  <a
+                    href={`http://www.twitter.com/share?url=${story.url}`}
+                    target="blank"
+                    style={{margin:"0", padding:"0"}}
+                  >
+                    <i className="fa fa-twitter" style={{ marginLeft:15,fontSize:30,color:"#54acee"}}></i>
+                  </a>
+   <Button variant="info" style={{float:"right"}} onClick={() => this.removebookmark(story)}><i className="fa fa-trash-o"></i></Button>
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">{story.time}</small>
+    </Card.Footer>
+  </Card>
+  </CardGroup>
+     <br/>
+  </div>) 
                 })}
             </div>
         )

@@ -1,4 +1,4 @@
-import Duration from "./time.js";
+// import Duration from "./time.js";
 // let level = 0;
 function fetchAllComments(object, level) {
   if (!object.hasOwnProperty("kids")) {

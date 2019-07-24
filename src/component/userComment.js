@@ -1,10 +1,10 @@
 
 import React, { Component, Fragment } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Duration from '../api-functions/time'
 import {Form} from 'react-bootstrap'
-import firebase from 'firebase'
-import getId from "../api-functions/getId.js";
+// import firebase from 'firebase'
+// import getId from "../api-functions/getId.js";
 
 class userComments extends Component{
   constructor(props){

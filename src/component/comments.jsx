@@ -4,7 +4,7 @@ import fetchComments from "../api-functions/fetchLevelComments.js";
 import getId from "../api-functions/getId.js";
 import CreateCard from "./Contactcard";
 import firebase from 'firebase'
-import {Form, Button, Spinner} from 'react-bootstrap'
+import {Form, Button} from 'react-bootstrap'
 // import Duration from '../api-functions/time'
 import UserComments from './userComment.js'
 import db from "../database/firebaseApp"
@@ -168,19 +168,7 @@ class Comments extends Component {
     const firstLevelComment = this.state.comments.map(element => (
       <CreateCard key={element.id} contact={element} function={this.fetchComment} />
     ));
-    if(!this.state.isLoaded){
-     return(
-        <div className="loader">
-          <Spinner animation="grow" variant="secondary" />
-          <Spinner animation="grow" variant="success" />
-          <Spinner animation="grow" variant="danger" />
-          <Spinner animation="grow" variant="warning" />
-          <Spinner animation="grow" variant="info" />
-          <Spinner animation="grow" variant="light" />
-          <Spinner animation="grow" variant="dark" />
-        </div>
-      )
-    }else{
+    
       return(
          <Fragment>
     <Form>
@@ -194,7 +182,6 @@ class Comments extends Component {
     {firstLevelComment}
    </Fragment>
       )
-    }
     
   }
 }

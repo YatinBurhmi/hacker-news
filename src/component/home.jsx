@@ -27,11 +27,11 @@ export class home extends Component {
     this.countNumberOfPoints = this.countNumberOfPoints.bind(this);
   }
 
-  handleClick = () => {
-    this.setState({
-      bgColor: 'red'
-    });
-  };
+  // handleClick = () => {
+  //   this.setState({
+  //     bgColor: 'red'
+  //   });
+  // };
    
 
   async componentDidMount() {
@@ -262,7 +262,7 @@ async countNumberOfPoints(story){
                 </a>
                 <span>-({story.source})</span>
                 <Button variant="Link" style={{float:"right", color:"black"}} onClick={() => this.addBookMark(story)}>
-                <i className="fa fa-bookmark-o" onClick={this.handleClick.bind(this)} style={{float:"right", fontSize:24, color:this.state.bgColor}}></i></Button>
+                <i className="fa fa-bookmark-o"  style={{float:"right", fontSize:24, color:'blue'}}></i></Button>
                 <br/>
                 <span><b>By - {story.by}</b></span>{" "}<span>({story.time})</span>
                 <div>
